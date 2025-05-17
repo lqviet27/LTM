@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
     <div class="container header-container">
         <div class="logo">
@@ -15,7 +15,7 @@
                     <c:if test="${sessionScope.user.role eq 'ADMIN'}">
                         <li><a href="${pageContext.request.contextPath}/admin/members">Quản lý thành viên</a></li>
                     </c:if>
-                    <li><a href="${pageContext.request.contextPath}/profile">Hồ sơ cá nhân</a></li>
+                    <li><a href="${pageContext.request.contextPath}/user/profile">Hồ sơ cá nhân</a></li>
                 </c:if>
             </ul>
         </nav>
