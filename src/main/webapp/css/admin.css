@@ -1,0 +1,25 @@
+.admin-nav-item a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.admin-nav-item a:before {
+    content: "⚙️";
+    margin-right: 5px;
+    font-size: 1.2em;
+}
+
+.admin-badge {
+    display: inline-block;
+    background-color: #ffc107;
+    color: #333;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 5px;
+}

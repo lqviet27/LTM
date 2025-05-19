@@ -1,5 +1,6 @@
 package bt.baitapnhom.controller;
 
+import bt.baitapnhom.common.UserRole;
 import bt.baitapnhom.model.bean.User;
 import bt.baitapnhom.model.bo.UserBO;
 
@@ -19,9 +20,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Hiển thị trang đăng nhập
         req.getRequestDispatcher("/pages/login.jsp").forward(req, resp);
-    }
-
-    @Override
+    }    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
@@ -35,8 +34,14 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("user", user);
             session.setAttribute("isLoggedIn", true);
 
-            // Chuyển hướng đến trang thông tin người dùng
-            resp.sendRedirect(req.getContextPath() + "/user/profile");
+            // Kiểm tra vai trò của người dùng để chuyển hướng
+            if (user.getRole() == UserRole.ADMIN) {
+                // Nếu là ADMIN, chuyển hướng đến trang quản lý admin
+                resp.sendRedirect(req.getContextPath() + "/admin/members");
+            } else {
+                // Nếu là USER thường, chuyển hướng đến trang thông tin người dùng
+                resp.sendRedirect(req.getContextPath() + "/user/profile");
+            }
         } else {
             // Đăng nhập thất bại - chuyển hướng về trang đăng nhập với thông báo lỗi
             resp.sendRedirect(req.getContextPath() + "/login?error=true");
